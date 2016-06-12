@@ -1,7 +1,7 @@
 {
   "name": "nightmare",
   "version": "0.0.1",
-  "author": "unite.flights <docker@unite.flights>",
+  "author": "Kyle Chamberlain <kchamb3@gmail.com>",
   "dependencies": {
     "nightmare": "github:segmentio/nightmare",
     "vo": "^1.0.3"
