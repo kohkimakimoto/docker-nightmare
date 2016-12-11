@@ -1,6 +1,6 @@
 # docker-nightmare
 
-[Nightmare](https://github.com/segmentio/nightmare) headless contaienr.
+[Nightmare](https://github.com/segmentio/nightmare) headless container.
 
 ## Example
 
