@@ -16,6 +16,9 @@ nightmare() {
 Create `screenshot.js`.
 
 ```js
+var Nightmare = require('nightmare');
+var nightmare = Nightmare({ show: false });
+
 nightmare
   .goto("https://google.com")
   .evaluate(() => {
