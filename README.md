@@ -6,7 +6,7 @@
 
 Add a shell function to use it conveniently.
 
-```
+```bash
 nightmare() {
     docker run -v $PWD:/mnt/work -w /mnt/work --rm -e "cmd=$NIGHTMARE_CMD" kohkimakimoto/nightmare:latest "$@";
     return $?;
