@@ -1,12 +1,4 @@
 FROM node:latest
-MAINTAINER Kyle Chamberlain <kchamb3@gmail.com>
-
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd --system nightmare && useradd --system --create-home --gid nightmare nightmare
-ENV ROOT "/root/nightmare"
-
-ENV DEBUG=nightmare
-ENV ARGUMENTS=()
 
 RUN apt-get update && apt-get install -y \
   xvfb \
@@ -16,6 +8,7 @@ RUN apt-get update && apt-get install -y \
   xfonts-scalable \
   xfonts-cyrillic \
   x11-apps \
+  fonts-vlgothic \
   clang \
   libdbus-1-dev \
   libgtk2.0-dev \
@@ -31,16 +24,14 @@ RUN apt-get update && apt-get install -y \
   gcc-multilib \
   g++-multilib && \
     rm -rf /var/lib/apt/lists/* && \
-		find /usr/share/doc -depth -type f ! -name copyright | xargs rm || true && \
-		find /usr/share/doc -empty | xargs rmdir || true && \
-		rm -rf /usr/share/man/* /usr/share/groff/* /usr/share/info/* && \
-		rm -rf /usr/share/lintian/* /usr/share/linda/* /var/cache/man/*
+        find /usr/share/doc -depth -type f ! -name copyright | xargs rm || true && \
+        find /usr/share/doc -empty | xargs rmdir || true && \
+        rm -rf /usr/share/man/* /usr/share/groff/* /usr/share/info/* && \
+        rm -rf /usr/share/lintian/* /usr/share/linda/* /var/cache/man/* && \
+        npm install -g nightmare@"2.*" vo@"4.*" && \
+        mkdir -p /mnt/work
 
-WORKDIR ${ROOT}
-COPY ./package.json ./
-RUN npm install
+COPY entrypoint.sh /entrypoint.sh
 
-VOLUME ${ROOT}
-
-COPY docker-entrypoint.sh /entrypoint.sh
+WORKDIR /mnt/work
 ENTRYPOINT ["/entrypoint.sh"]

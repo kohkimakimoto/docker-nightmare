@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+._*
+*.iml
+!.gitkeep
+/index.js
+.tags*
